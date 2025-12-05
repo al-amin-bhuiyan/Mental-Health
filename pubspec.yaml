@@ -76,34 +76,86 @@ flutter:
     - assets/images/background_image.png
     - assets/images/sign_in_background_image.png
     - assets/images/sign_in_harbor_logo.svg
+    - assets/images/ajibo_rekha.png
+    - assets/images/you_are_all_set.png
+
     # Icons
     - assets/icons/splash_logo.svg
     - assets/icons/google.svg
     - assets/icons/apple.svg
     - assets/icons/signature.svg
+    - assets/icons/Icon.svg
 
 
   fonts:
     - family: Urbanist
       fonts:
-        - asset: assets/fonts/Urbanist-Black.ttf
-          weight: 900
+        # Thin
+        - asset: assets/fonts/Urbanist-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Urbanist-ThinItalic.ttf
+          weight: 100
+          style: italic
+
+        # ExtraLight
+        - asset: assets/fonts/Urbanist-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Urbanist-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+
+        # Light
+        - asset: assets/fonts/Urbanist-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Urbanist-LightItalic.ttf
+          weight: 300
+          style: italic
+
+        # Regular / Normal
+        - asset: assets/fonts/Urbanist-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Urbanist-Italic.ttf
+          weight: 400
+          style: italic
+
+        # Medium
+        - asset: assets/fonts/Urbanist-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Urbanist-MediumItalic.ttf
+          weight: 500
+          style: italic
+
+        # SemiBold
+        - asset: assets/fonts/Urbanist-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Urbanist-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+
+        # Bold
         - asset: assets/fonts/Urbanist-Bold.ttf
           weight: 700
         - asset: assets/fonts/Urbanist-BoldItalic.ttf
           weight: 700
           style: italic
-        - asset: assets/fonts/Urbanist-Italic.ttf
+
+        # ExtraBold
+        - asset: assets/fonts/Urbanist-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Urbanist-ExtraBoldItalic.ttf
+          weight: 800
           style: italic
-        - asset: assets/fonts/Urbanist-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Urbanist-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Urbanist-Thin.ttf
-          weight: 100
+
+        # Black
+        - asset: assets/fonts/Urbanist-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Urbanist-BlackItalic.ttf
+          weight: 900
+          style: italic
 
 
-  # An image asset can refer to one or more resolution-specific "variants", see
+
+    # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
   # For details regarding adding assets from package dependencies, see

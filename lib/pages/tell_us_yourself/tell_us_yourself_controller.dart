@@ -4,30 +4,21 @@ import 'package:get/get.dart';
 class TellUsYourselfController extends GetxController {
   // Current page index
   final RxInt currentPage = 0.obs;
-  final int totalPages = 14;
+  final int totalPages = 17;
 
   // User data
   final RxString selectedGender = ''.obs;
   final RxString selectedAgeRange = ''.obs;
   final RxString selectedPrayerRelationship = ''.obs;
+  final RxString selectedBadHabit = ''.obs;
+  final RxString selectedBelovedChildReason = ''.obs;
   final RxString selectedJournalingApps = ''.obs;
   final RxString selectedJournalingFrequency = ''.obs;
   final RxString selectedJournalingObstacle = ''.obs;
   final RxString selectedGoal = ''.obs;
   final RxString selectedHearAboutUs = ''.obs;
 
-  // Additional data fields for other pages
-  final RxString selectedMentalHealthGoal = ''.obs;
-  final RxString selectedStressLevel = ''.obs;
-  final RxString selectedSleepQuality = ''.obs;
-  final RxString selectedExerciseFrequency = ''.obs;
-  final RxString selectedSupportSystem = ''.obs;
-  final RxString selectedTherapyExperience = ''.obs;
-  final RxString selectedEmotionalState = ''.obs;
-  final RxString selectedCopingMechanism = ''.obs;
-  final RxString selectedMedicationUse = ''.obs;
-  final RxString selectedTriggers = ''.obs;
-  final RxString selectedLifeEvents = ''.obs;
+
 
   // Gender options
   final List<String> genderOptions = [
@@ -54,6 +45,27 @@ class TellUsYourselfController extends GetxController {
     'Occasionally',
     'I want to learn',
     'Not for me',
+  ];
+
+  // Bad habits options
+  final List<String> badHabitOptions = [
+    'Scrolling social media',
+    'Watching the news',
+    'Worrying too much',
+    'Drugs/Alcohol',
+    'Procrastination',
+    'None of these',
+  ];
+
+  // Beloved child reasons options
+  final List<String> belovedChildReasonOptions = [
+    'Draw close to God',
+    'Under His Bible',
+    'Learn to pray',
+    'Improve habits',
+    "I'm Lonely",
+    'Rather sleep',
+    'Reduce anxiety',
   ];
 
   // Journaling apps options
@@ -125,6 +137,14 @@ class TellUsYourselfController extends GetxController {
     selectedPrayerRelationship.value = relationship;
   }
 
+  void selectBadHabit(String habit) {
+    selectedBadHabit.value = habit;
+  }
+
+  void selectBelovedChildReason(String reason) {
+    selectedBelovedChildReason.value = reason;
+  }
+
   void selectJournalingApps(String option) {
     selectedJournalingApps.value = option;
   }
@@ -144,6 +164,37 @@ class TellUsYourselfController extends GetxController {
     selectedHearAboutUs.value = option;
   }
 
+  // Reset all selections (useful for testing or restarting onboarding)
+  void resetOnboarding() {
+    currentPage.value = 0;
+    selectedGender.value = '';
+    selectedAgeRange.value = '';
+    selectedPrayerRelationship.value = '';
+    selectedBadHabit.value = '';
+    selectedBelovedChildReason.value = '';
+    selectedJournalingApps.value = '';
+    selectedJournalingFrequency.value = '';
+    selectedJournalingObstacle.value = '';
+    selectedGoal.value = '';
+    selectedHearAboutUs.value = '';
+  }
+
+  // Get all user data as a map (useful for saving to database)
+  Map<String, String> getUserData() {
+    return {
+      'gender': selectedGender.value,
+      'ageRange': selectedAgeRange.value,
+      'prayerRelationship': selectedPrayerRelationship.value,
+      'badHabit': selectedBadHabit.value,
+      'belovedChildReason': selectedBelovedChildReason.value,
+      'triedJournalingApps': selectedJournalingApps.value,
+      'journalingFrequency': selectedJournalingFrequency.value,
+      'journalingObstacle': selectedJournalingObstacle.value,
+      'goal': selectedGoal.value,
+      'heardAboutUs': selectedHearAboutUs.value,
+    };
+  }
+
   bool canContinue() {
     switch (currentPage.value) {
       case 0:
@@ -153,14 +204,18 @@ class TellUsYourselfController extends GetxController {
       case 2:
         return selectedPrayerRelationship.value.isNotEmpty;
       case 3:
-        return selectedJournalingApps.value.isNotEmpty;
+        return selectedBadHabit.value.isNotEmpty;
       case 4:
-        return selectedJournalingFrequency.value.isNotEmpty;
+        return selectedBelovedChildReason.value.isNotEmpty;
       case 5:
-        return selectedJournalingObstacle.value.isNotEmpty;
+        return selectedJournalingApps.value.isNotEmpty;
       case 6:
-        return selectedGoal.value.isNotEmpty;
+        return selectedJournalingFrequency.value.isNotEmpty;
       case 7:
+        return selectedJournalingObstacle.value.isNotEmpty;
+      case 8:
+        return selectedGoal.value.isNotEmpty;
+      case 9:
         return selectedHearAboutUs.value.isNotEmpty;
       default:
         return true;
@@ -168,31 +223,38 @@ class TellUsYourselfController extends GetxController {
   }
 
   double getProgress() {
-    return (currentPage.value + 1) / totalPages;
+    // Progress bar shows only for pages 0-12 (13 pages total)
+    // After page 12 (YoureAllSetPage), progress bar is hidden
+    const progressBarPages = 13;
+    return (currentPage.value + 1) / progressBarPages;
   }
 
   void completeOnboarding() {
     // Save user data and navigate to home
-    print('Onboarding completed!');
+    print('====== Onboarding Completed! ======');
     print('Gender: ${selectedGender.value}');
     print('Age Range: ${selectedAgeRange.value}');
     print('Prayer Relationship: ${selectedPrayerRelationship.value}');
-    print('Journaling Apps: ${selectedJournalingApps.value}');
+    print('Bad Habit: ${selectedBadHabit.value}');
+    print('Beloved Child Reason: ${selectedBelovedChildReason.value}');
+    print('Tried Other Journaling Apps: ${selectedJournalingApps.value}');
     print('Journaling Frequency: ${selectedJournalingFrequency.value}');
     print('Journaling Obstacle: ${selectedJournalingObstacle.value}');
     print('Goal: ${selectedGoal.value}');
     print('Heard About Us: ${selectedHearAboutUs.value}');
+    print('===================================');
 
-
-    // Navigate to home screen
+    // Show success message
     Get.snackbar(
       'Success',
       'Profile completed successfully!',
       backgroundColor: Colors.green.withValues(alpha: 0.9),
       colorText: Colors.white,
       snackPosition: SnackPosition.TOP,
+      duration: const Duration(seconds: 3),
     );
 
+    // TODO: Save data to database/storage
     // TODO: Navigate to home screen
     // context.go(AppPath.home);
   }

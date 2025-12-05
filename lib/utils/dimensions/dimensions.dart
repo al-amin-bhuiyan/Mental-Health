@@ -1,66 +1,86 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class Dimensions {
-  //screen size
-  static double mobileScreenWidth = 395;
-  static double tabletScreenWidth = 855;
+  // dynamic screen size
+  static double screenWidth = 1.sw;
+  static double screenHeight = 1.sh;
 
   // padding and margin
-  static double paddingSize = 24.00.h;
+  static double paddingSize = 24.h;
   static double marginBetweenInputTitleAndBox = 8.h;
   static double marginBetweenInputBox = 16.h;
-  static double marginSizeHorizontal = 24.00.w;
-  static double marginSizeVertical = 24.00.h;
-  static double marginSizeBetweenColumn = 16.00.w;
+  static double marginSizeHorizontal = 24.w;
+  static double marginSizeVertical = 24.h;
+  static double marginSizeBetweenColumn = 16.w;
 
   // widget size
-  static double buttonHeight = 56.00.h;
-  static double inputBoxHeight = 56.00.h;
+  static double buttonHeight = 56.h;
+  static double inputBoxHeight = 56.h;
   static double appBarHeight = 64.4.h;
 
-  static double iconSizeSmall = 8.00.h;
-  static double iconSizeDefault = 16.00.h;
-  static double iconSizeLarge = 24.00.h;
+  // icon size
+  static double iconSizeSmall = 8.h;
+  static double iconSizeDefault = 16.h;
+  static double iconSizeLarge = 24.h;
 
-  // typography size
-  static double headingTextSize1 = 24.00.sp;
-  static double headingTextSize2 = 20.00.sp;
-  static double headingTextSize3 = 16.00.sp;
-  static double headingTextSize4 = 14.00.sp;
-  static double headingTextSize5 = 12.00.sp;
-  static double headingTextSize6 = 10.00.sp;
+  // typography
+  static double headingTextSize1 = 24.sp;
+  static double headingTextSize2 = 20.sp;
+  static double headingTextSize3 = 16.sp;
+  static double headingTextSize4 = 14.sp;
+  static double headingTextSize5 = 12.sp;
+  static double headingTextSize6 = 10.sp;
 
-  //font size
-  static double getFontSizeSmall(BuildContext context) =>
-      context.width >= 1300 ? 15.sp : 12.sp;
-  static double getFontSizeSemiSmall(BuildContext context) =>
-      context.width >= 1300 ? 15.sp : 13.sp;
-  static double getFontSizeDefault(BuildContext context) =>
-      context.width >= 1300 ? 17.sp : 14.sp;
-  static double getFontSizeLarge(BuildContext context) =>
-      context.width >= 1300 ? 20.sp : 16.sp;
-  static double getFontSizeExtraLarge(BuildContext context) =>
-      context.width >= 1300 ? 20.sp : 18.sp;
-  static double getButtonFontSize(BuildContext context) =>
-      context.width >= 1300 ? 26.sp : 20.sp;
-  static double getButtonFontSizeLarge(BuildContext context) =>
-      context.width >= 1300 ? 30.sp : 24.sp;
+  // Tell us yourself page specific sizes
+  static double tellUsYourselfTopSpacing = 44.h;  // Top spacing from back button/progress
+  static double tellUsYourselfTitleSize = 28.sp;  // Title font size
+  static double tellUsYourselfTitleToSubtitleSpacing = 8.h;  // Spacing between title and subtitle
+  static double tellUsYourselfSubtitleSize = 14.sp;
+  static double tellUsYourselfOptionSize = 16.sp;
 
-  static double getFontSizeOverLarge(BuildContext context) =>
-      context.width >= 1300 ? 56.sp : 46.sp;
-  static double getFontSizeForReview(BuildContext context) => 36.sp;
+  static double tellUsYourselfHarvordOptionspace = 24.sp;
+  static double tellUsYourselfHarvorBarSideMargin = 55.5.w;
+  static double tellUsYourselfHarvorpercentSize = 24.sp;
+  static double tellUsYourselfHarvorwithandwithout = 14.w;
 
-  // radius size
-  static double radius = 10.00.r;
-  static double radiusSmall = 5.0.r;
-  static double radiusDefault = 16.0.r;
-  static double radiusLarge = 20.0.r;
-  static double radiusExtraLarge = 32.0.r;
-  static double radiusExtraMoreLarge = 50.0.r;
+  // Universal consistent spacing for ALL tell_us_yourself pages (prevents overflow on small devices)
+  static double tellUsYourselfPageTopSpacing = 16.h;            // Top spacing for ALL pages (consistent)
+  static double tellUsYourselfPageBottomSpacing = 8.h;          // Bottom spacing for ALL pages (consistent)
+  static double tellUsYourselfPageButtonSpacing = 8.h;          // Spacing before button for ALL pages
+
+  // Fixed spacing between subtitle and list items for all pages
+  static double tellUsYourselfSubtitleToListSpacing = 32.h;     // Spacing between subtitle and list (32px responsive)
+  static double tellUsYourselfBetweenListItemSpacing = 32.h;    // Spacing between list items (32px responsive, scales with device)
+
+  // font sizes based on width breakpoints
+  static double getFontSizeSmall() =>
+      screenWidth >= 1300 ? 15.sp : 12.sp;
+  static double getFontSizeSemiSmall() =>
+      screenWidth >= 1300 ? 15.sp : 13.sp;
+  static double getFontSizeDefault() =>
+      screenWidth >= 1300 ? 17.sp : 14.sp;
+  static double getFontSizeLarge() =>
+      screenWidth >= 1300 ? 20.sp : 16.sp;
+  static double getFontSizeExtraLarge() =>
+      screenWidth >= 1300 ? 20.sp : 18.sp;
+
+  static double getButtonFontSize() =>
+      screenWidth >= 1300 ? 26.sp : 20.sp;
+  static double getButtonFontSizeLarge() =>
+      screenWidth >= 1300 ? 30.sp : 24.sp;
+
+  static double getFontSizeOverLarge() =>
+      screenWidth >= 1300 ? 56.sp : 46.sp;
+
+  // radius
+  static double radius = 10.r;
+  static double radiusSmall = 5.r;
+  static double radiusDefault = 16.r;
+  static double radiusLarge = 20.r;
+  static double radiusExtraLarge = 32.r;
+  static double radiusExtraMoreLarge = 50.r;
 
   // default height and width size
-  static double heightSize = 12.00.h;
-  static double widthSize = 10.00.w;
+  static double heightSize = 12.h;
+  static double widthSize = 10.w;
 }

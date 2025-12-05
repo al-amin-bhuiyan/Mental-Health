@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/custom_assets/custom_assets.dart';
@@ -54,10 +55,14 @@ class ForgetPasswordScreen extends StatelessWidget {
                     // Back button
                     IconButton(
                       onPressed: () => context.pop(),
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: AppColors.whiteColor,
-                        size: 24,
+                      icon: SvgPicture.asset(
+                        CustomAssets.back_arrow_icon,
+                        width: 24,
+                        height: 24,
+                        colorFilter: ColorFilter.mode(
+                          AppColors.whiteColor,
+                          BlendMode.srcIn,
+                        ),
                       ),
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),

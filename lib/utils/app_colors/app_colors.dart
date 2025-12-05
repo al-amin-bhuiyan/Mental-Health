@@ -8,8 +8,10 @@ class AppColors {
   static const Color brownColor = Color(0xff492A03);
   static const Color greenColor = Color(0xff84B5A4);
   static const Color blackLightColor = Color(0xff3A3A35);
-  static const Color grayColor = Color(0xffEDEDED);
+  //static const Color grayColor = Color(0xffEDEDED);
   static const Color redColor = Color(0xffBD0404);
+  static const Color grayColor = Color(0xFFAEAEAE);
+  static const Color darkGrayColor = Color(0xFFD4D4D8);
   static const Color orangeColor = Color(0xFFFF8C00); // Dark orange for buttons
 
   static const Color whiteColor = Color.fromARGB(255, 255, 255, 255);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/custom_assets/custom_assets.dart';
@@ -53,10 +54,14 @@ class NewPasswordScreen extends StatelessWidget {
                     ),
                     child: IconButton(
                       onPressed: () => context.pop(),
-                      icon: Icon(
-                        Icons.arrow_back_ios_new,
-                        color: AppColors.whiteColor,
-                        size: 20,
+                      icon: SvgPicture.asset(
+                        CustomAssets.back_arrow_icon,
+                        width: 20,
+                        height: 20,
+                        colorFilter: ColorFilter.mode(
+                          AppColors.whiteColor,
+                          BlendMode.srcIn,
+                        ),
                       ),
                       padding: EdgeInsets.zero,
                     ),
