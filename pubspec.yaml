@@ -78,6 +78,9 @@ flutter:
     - assets/images/sign_in_harbor_logo.svg
     - assets/images/ajibo_rekha.png
     - assets/images/you_are_all_set.png
+    - assets/images/ring_bell.png
+    - assets/images/tell_us_your_self_lastpage.png
+
 
     # Icons
     - assets/icons/splash_logo.svg
@@ -85,6 +88,23 @@ flutter:
     - assets/icons/apple.svg
     - assets/icons/signature.svg
     - assets/icons/Icon.svg
+    - assets/icons/in_3_days.svg
+    - assets/icons/ring_icon.svg
+    - assets/icons/today.svg
+    - assets/icons/coffee_svg.svg
+    - assets/icons/close_svg.svg
+    - assets/icons/people_svg.svg
+    - assets/icons/bible_nav.svg
+    - assets/icons/chatbot_nav.svg
+    - assets/icons/home_nav.svg
+    - assets/icons/journal_nav.svg
+    - assets/icons/profile_nav.svg
+    - assets/icons/bible_hovar_nav.svg
+    - assets/icons/chatbot_hovar_nav.svg
+    - assets/icons/home_hover_nav.svg
+    - assets/icons/journal_hovar_nav.svg
+    - assets/icons/profile_hovar_nav.svg
+
 
 
   fonts:

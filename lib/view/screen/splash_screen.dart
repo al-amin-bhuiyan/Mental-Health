@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -35,18 +36,18 @@ class SplashScreen extends StatelessWidget {
                 // App Logo SVG
                 SvgPicture.asset(
                   CustomAssets.splashLogo,
-                  width: 150,
-                  height: 150,
+                  width: 150.w,
+                  height: 150.h,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 24),
                 // App Name
 
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 // Tagline
                 // Text(
                 //   'Your wellness companion',
                 //   'Your wellness companion',
-                //   style: AppFonts.urbanistSemiBold(fontSize: 32, color: AppColors.white500),
+                //   style: AppFonts.urbanistSemiBold(fontSize: 32.sp, color: AppColors.white500),
                 // ),
               ],
             ),

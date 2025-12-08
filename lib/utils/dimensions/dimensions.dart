@@ -32,11 +32,12 @@ class Dimensions {
   static double headingTextSize6 = 10.sp;
 
   // Tell us yourself page specific sizes
-  static double tellUsYourselfTopSpacing = 44.h;  // Top spacing from back button/progress
+  static double tellUsYourselfTopSpacing = 28.h;  // Top spacing from back button/progress (reduced for small devices)
   static double tellUsYourselfTitleSize = 28.sp;  // Title font size
   static double tellUsYourselfTitleToSubtitleSpacing = 8.h;  // Spacing between title and subtitle
   static double tellUsYourselfSubtitleSize = 14.sp;
   static double tellUsYourselfOptionSize = 16.sp;
+  static double tellUsYourselfOptionButtonVerticalPadding = 12.h;  // Reduced vertical padding for option buttons
 
   static double tellUsYourselfHarvordOptionspace = 24.sp;
   static double tellUsYourselfHarvorBarSideMargin = 55.5.w;
@@ -44,13 +45,13 @@ class Dimensions {
   static double tellUsYourselfHarvorwithandwithout = 14.w;
 
   // Universal consistent spacing for ALL tell_us_yourself pages (prevents overflow on small devices)
-  static double tellUsYourselfPageTopSpacing = 16.h;            // Top spacing for ALL pages (consistent)
-  static double tellUsYourselfPageBottomSpacing = 8.h;          // Bottom spacing for ALL pages (consistent)
-  static double tellUsYourselfPageButtonSpacing = 8.h;          // Spacing before button for ALL pages
+  static double tellUsYourselfPageTopSpacing = 12.h;            // Top spacing for ALL pages (reduced for small devices)
+  static double tellUsYourselfPageBottomSpacing = 4.h;          // Bottom spacing for ALL pages (reduced for small devices)
+  static double tellUsYourselfPageButtonSpacing = 6.h;          // Spacing before button for ALL pages (reduced)
 
   // Fixed spacing between subtitle and list items for all pages
-  static double tellUsYourselfSubtitleToListSpacing = 32.h;     // Spacing between subtitle and list (32px responsive)
-  static double tellUsYourselfBetweenListItemSpacing = 32.h;    // Spacing between list items (32px responsive, scales with device)
+  static double tellUsYourselfSubtitleToListSpacing = 24.h;     // Spacing between subtitle and list (reduced for small devices)
+  static double tellUsYourselfBetweenListItemSpacing = 24.h;    // Spacing between list items (reduced, scales with device)
 
   // font sizes based on width breakpoints
   static double getFontSizeSmall() =>

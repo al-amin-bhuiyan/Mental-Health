@@ -9,6 +9,7 @@ import '../../pages/verification_code/verification_code.dart';
 import '../../pages/new_password/new_password.dart';
 import '../../pages/sign_up/sign_up.dart';
 import '../../pages/tell_us_yourself/tell_us_yourself.dart';
+import '../../pages/home_page/home_page.dart';
 
 class AppRoute {
   static final GoRouter router = GoRouter(
@@ -27,11 +28,7 @@ class AppRoute {
       GoRoute(
         path: AppPath.home,
         name: 'home',
-        builder: (context, state) => const Scaffold(
-          body: Center(
-            child: Text('Home Screen'),
-          ),
-        ),
+        builder: (context, state) => const HomePage(),
       ),
       GoRoute(
         path: AppPath.login,

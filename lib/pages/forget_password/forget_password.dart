@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -47,116 +48,116 @@ class ForgetPasswordScreen extends StatelessWidget {
             // Content
             SafeArea(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20),
                     // Back button
                     IconButton(
                       onPressed: () => context.pop(),
                       icon: SvgPicture.asset(
                         CustomAssets.back_arrow_icon,
-                        width: 24,
-                        height: 24,
+                        width: 24.w,
+                        height: 24.h,
                         colorFilter: ColorFilter.mode(
                           AppColors.whiteColor,
                           BlendMode.srcIn,
                         ),
                       ),
                       padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
+                      constraints: BoxConstraints(),
                     ),
-                    const SizedBox(height: 100),
+                    SizedBox(height: 100),
                     // Title
                     Center(
                       child: Text(
                         'Forgot password?',
                         style: AppFonts.urbanistSemiBold(
-                          fontSize: 28,
+                          fontSize: 28.sp,
                           color: AppColors.whiteColor,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     // Subtitle
                     Center(
                       child: Text(
                         'Enter your email address to reset password',
                         style: AppFonts.urbanistRegular(
-                          fontSize: 14,
+                          fontSize: 14.sp,
                           color: AppColors.white500,
                         ),
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    const SizedBox(height: 40),
+                    SizedBox(height: 40),
                     // Email Field
                     Text(
                       'Email',
                       style: AppFonts.urbanistSemiBold(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         color: AppColors.whiteColor,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8),
                     TextField(
                       controller: controller.emailController,
                       style: AppFonts.urbanistRegular(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         color: AppColors.whiteColor,
                       ),
                       decoration: InputDecoration(
                         hintText: 'anthony@gmail.com',
                         hintStyle: AppFonts.urbanistRegular(
-                          fontSize: 14,
+                          fontSize: 14.sp,
                           color: AppColors.white500.withValues(alpha: 0.6),
                         ),
                         filled: true,
                         fillColor: Colors.white.withValues(alpha: 0.1),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           borderSide: BorderSide(
                             color: AppColors.white500.withValues(alpha: 0.3),
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           borderSide: BorderSide(
                             color: AppColors.white500.withValues(alpha: 0.3),
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           borderSide: BorderSide(
                             color: AppColors.primaryColor,
-                            width: 2,
+                            width: 2.w,
                           ),
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 16,
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 16.h,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 32),
+                    SizedBox(height: 32),
                     // Send Code Button
                     SizedBox(
                       width: double.infinity,
-                      height: 56,
+                      height: 56.h,
                       child: ElevatedButton(
                         onPressed: () => controller.sendCode(context),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primaryColor,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(12.r),
                           ),
                           elevation: 0,
                         ),
                         child: Text(
                           'Send Code',
                           style: AppFonts.urbanistSemiBold(
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             color: AppColors.whiteColor,
                           ),
                         ),

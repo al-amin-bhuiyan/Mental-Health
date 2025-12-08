@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class TellUsYourselfController extends GetxController {
   // Current page index
   final RxInt currentPage = 0.obs;
-  final int totalPages = 17;
+  final int totalPages = 19;
 
   // User data
   final RxString selectedGender = ''.obs;
