@@ -48,7 +48,7 @@ class CustomNavBar extends StatelessWidget {
             _NavBarItem(
               icon: CustomAssets.chatbot_nav,
               hoverIcon: CustomAssets.chatbot_hover_nav,
-              label: 'AI',
+              label: 'Chatbot',
               index: 2,
               isSelected: controller.selectedIndex.value == 2,
               onTap: () => controller.changeIndex(2),
@@ -102,15 +102,21 @@ class _NavBarItem extends StatelessWidget {
         height: 70.h,
         decoration: BoxDecoration(
           color: Colors.transparent,
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(5.r),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              isSelected ? hoverIcon : icon,
-              width: 24.w,
-              height: 24.h,
+            SizedBox(
+              width: 37.w,
+              height: 37.h,
+              child: Center(
+                child: SvgPicture.asset(
+                  isSelected ? hoverIcon : icon,
+                  width: isSelected ? 37.w : 24.w,
+                  height: isSelected ? 37.h : 24.h,
+                ),
+              ),
             ),
             SizedBox(height: 4.h),
             SizedBox(
@@ -123,7 +129,7 @@ class _NavBarItem extends StatelessWidget {
                   child: Text(
                     label,
                     style: AppFonts.urbanistMedium(
-                      fontSize: 10.sp,
+                      fontSize: 12.sp,
                       color: AppColors.primaryColor,
                     ),
                     maxLines: 1,
