@@ -80,6 +80,9 @@ flutter:
     - assets/images/you_are_all_set.png
     - assets/images/ring_bell.png
     - assets/images/tell_us_your_self_lastpage.png
+    - assets/images/verse_of_the_day.png
+    - assets/images/home_background.png
+    - assets/images/Today_s_plan.png
 
 
     # Icons
@@ -104,6 +107,14 @@ flutter:
     - assets/icons/home_hover_nav.svg
     - assets/icons/journal_hovar_nav.svg
     - assets/icons/profile_hovar_nav.svg
+    - assets/icons/angry.svg
+    - assets/icons/anxious.svg
+    - assets/icons/aweful.svg
+    - assets/icons/calm.svg
+    - assets/icons/happy.svg
+    - assets/icons/how_are_you_feeling.svg
+
+
 
 
 

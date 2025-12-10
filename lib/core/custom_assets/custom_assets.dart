@@ -10,6 +10,9 @@ class CustomAssets {
   static const String celebrationIcon = 'assets/images/celebration_icon.png';
   static const String ring_bell = 'assets/images/ring_bell.png';
   static const String tellUsYourselfLastPageBackground = 'assets/images/tell_us_your_self_lastpage.png';
+  static const String verse_of_the_day_background = 'assets/images/verse_of_the_day.png';
+  static const String home_background_image = 'assets/images/home_background.png';
+  static const String today_s_plan_background='assets/images/Today_s_plan.png';
 
   // Celebration icon for page 13
 
@@ -39,4 +42,14 @@ class CustomAssets {
   static const String bible_hover_nav = 'assets/icons/bible_hovar_nav.svg';
   static const String profile_nav = 'assets/icons/profile_nav.svg';
   static const String profile_hover_nav = 'assets/icons/profile_hovar_nav.svg';
+
+
+
+  //feeling icons
+  static const String happy_icon = 'assets/icons/happy.svg';
+  static const String angry_icon = 'assets/icons/angry.svg';
+  static const String awful_icon = 'assets/icons/aweful.svg';
+  static const String anxious_icon = 'assets/icons/anxious.svg';
+  static const String calm_icon ='assets/icons/calm.svg';
+  static const String how_are_you_feeling ='assets/icons/how_are_you_feeling.svg';
 }
