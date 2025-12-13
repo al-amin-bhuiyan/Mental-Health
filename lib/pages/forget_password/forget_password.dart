@@ -54,19 +54,21 @@ class ForgetPasswordScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: 20),
                     // Back button
-                    IconButton(
-                      onPressed: () => context.pop(),
-                      icon: SvgPicture.asset(
-                        CustomAssets.back_arrow_icon,
-                        width: 24.w,
-                        height: 24.h,
-                        colorFilter: ColorFilter.mode(
-                          AppColors.whiteColor,
-                          BlendMode.srcIn,
+                    GestureDetector(
+                      onTap: () => context.pop(),
+                      child: Container(
+                        width: 40.w,
+                        height: 40.h,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.2),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          Icons.arrow_back_ios_new,
+                          color: AppColors.whiteColor,
+                          size: 20.sp,
                         ),
                       ),
-                      padding: EdgeInsets.zero,
-                      constraints: BoxConstraints(),
                     ),
                     SizedBox(height: 100),
                     // Title

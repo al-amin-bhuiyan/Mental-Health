@@ -2417,7 +2417,7 @@ class OneTimeOfferPage extends StatelessWidget {
                 SizedBox(height: 24.h),
                 // White pill with discount
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 54.w, vertical: 26.h),
+                  padding: EdgeInsets.symmetric(horizontal: 60.w, vertical: 35.h),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20.r),

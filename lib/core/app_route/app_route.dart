@@ -1,6 +1,16 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+import '../../pages/add_journal/add_journal.dart';
+import '../../pages/profile/manage_subscription/payment/payment.dart';
+import '../../pages/view_journal/view_journal.dart';
 import '../../pages/login/login.dart';
+import '../../pages/voice_call_reminder/voice_call_reminder.dart';
+import '../../pages/profile/profile_page/profile_page.dart';
+import '../../pages/profile/edit_profile/edit_profile.dart';
+import '../../pages/profile/chage_password/change_password.dart';
+import '../../pages/profile/notification/notification.dart';
+import '../../pages/profile/bible_version/bible_version.dart';
+import '../../pages/profile/manage_subscription/manage_subscription.dart';
 import 'app_path.dart';
 import '../../view/screen/splash_screen.dart';
 import '../../pages/on_boarding/on_boarding.dart';
@@ -48,11 +58,37 @@ class AppRoute {
       GoRoute(
         path: AppPath.profile,
         name: 'profile',
-        builder: (context, state) => const Scaffold(
-          body: Center(
-            child: Text('Profile Screen'),
-          ),
-        ),
+        builder: (context, state) => const ProfilePage(),
+      ),
+      GoRoute(
+        path: AppPath.editProfile,
+        name: 'editProfile',
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return EditProfilePage(
+            userName: extra?['userName'] as String? ?? 'User',
+          );
+        },
+      ),
+      GoRoute(
+        path: AppPath.changePassword,
+        name: 'changePassword',
+        builder: (context, state) => const ChangePasswordPage(),
+      ),
+      GoRoute(
+        path: AppPath.notification,
+        name: 'notification',
+        builder: (context, state) => const NotificationPage(),
+      ),
+      GoRoute(
+        path: AppPath.bibleVersion,
+        name: 'bibleVersion',
+        builder: (context, state) => const BibleVersionPage(),
+      ),
+      GoRoute(
+        path: AppPath.manageSubscription,
+        name: 'manageSubscription',
+        builder: (context, state) => const ManageSubscriptionPage(),
       ),
       GoRoute(
         path: AppPath.chat,
@@ -80,6 +116,38 @@ class AppRoute {
         path: AppPath.tellUsYourself,
         name: 'tellUsYourself',
         builder: (context, state) => const TellUsYourselfScreen(),
+      ),
+
+      GoRoute(
+        path: AppPath.journal,
+        name: 'viewJournal',
+        builder: (context, state) => const ViewJournalPage(),
+      ),
+
+      GoRoute(
+        path: AppPath.addJournal,
+        name: 'addJournal',
+        builder: (context, state) {
+          // Extract extra data from GoRouter state
+          final extra = state.extra as Map<String, dynamic>?;
+
+          return AddJournalPage(
+            verse: extra?['verse'] as String?,
+            reference: extra?['reference'] as String?,
+            mood: extra?['mood'] as String?,
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppPath.voiceCallReminder,
+        name: 'voiceCallReminder',
+        builder: (context, state) => const VoiceCallReminderPage(),
+      ),
+      GoRoute(
+        path: AppPath.payment,
+        name: 'manageSubscription',
+        builder: (context, state) => const PaymentPage(),
       ),
       // Add more routes here as needed
       // Add more routes here as needed

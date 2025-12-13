@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/custom_assets/custom_assets.dart';
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_fonts/app_fonts.dart';
@@ -43,7 +44,7 @@ class LogMoodPage extends StatelessWidget {
                   child: Row(
                     children: [
                       GestureDetector(
-                        onTap: () => Navigator.pop(context),
+                        onTap: () => GoRouter.of(context).pop(),
                         child: Container(
                           width: 40.w,
                           height: 40.h,
@@ -144,50 +145,107 @@ class LogMoodPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.h),
-          // Mood Grid
-          Obx(() => Wrap(
-                spacing: 12.w,
-                runSpacing: 12.h,
-                children: moods.map((mood) {
-                  final isSelected = controller.selectedMood.value == mood['label'];
-                  return GestureDetector(
-                    onTap: () => controller.selectMood(mood['label'] as String),
-                    child: Container(
-                      width: 85.w,
-                      height: 85.h,
-                      decoration: BoxDecoration(
-                        color: isSelected
-                            ? (mood['color'] as Color).withValues(alpha: 0.3)
-                            : Colors.white.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(16.r),
-                        border: Border.all(
-                          color: isSelected
-                              ? (mood['color'] as Color)
-                              : Colors.transparent,
-                          width: 2.w,
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            mood['icon'] as String,
-                            width: 36.w,
-                            height: 36.h,
-                          ),
-                          SizedBox(height: 8.h),
-                          Text(
-                            mood['label'] as String,
-                            style: AppFonts.urbanistSemiBold(
-                              fontSize: 12.sp,
-                              color: AppColors.whiteColor,
+          // Mood Grid - Two center-aligned rows (3 + 2)
+          Obx(() => Column(
+                children: [
+                  // First row: 3 moods (center-aligned)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(3, (index) {
+                      final mood = moods[index];
+                      final isSelected = controller.selectedMood.value == mood['label'];
+                      return Padding(
+                        padding: EdgeInsets.only(right: index < 2 ? 12.w : 0),
+                        child: GestureDetector(
+                          onTap: () => controller.selectMood(mood['label'] as String),
+                          child: Container(
+                            width: 85.w,
+                            height: 85.h,
+                            decoration: BoxDecoration(
+                              color: isSelected
+                                  ? (mood['color'] as Color).withValues(alpha: 0.3)
+                                  : Colors.white.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(16.r),
+                              border: Border.all(
+                                color: isSelected
+                                    ? (mood['color'] as Color)
+                                    : Colors.transparent,
+                                width: 2.w,
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  mood['icon'] as String,
+                                  width: 36.w,
+                                  height: 36.h,
+                                ),
+                                SizedBox(height: 8.h),
+                                Text(
+                                  mood['label'] as String,
+                                  style: AppFonts.urbanistSemiBold(
+                                    fontSize: 12.sp,
+                                    color: AppColors.whiteColor,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  );
-                }).toList(),
+                        ),
+                      );
+                    }),
+                  ),
+                  SizedBox(height: 12.h),
+                  // Second row: 2 moods (center-aligned)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(2, (index) {
+                      final mood = moods[index + 3];
+                      final isSelected = controller.selectedMood.value == mood['label'];
+                      return Padding(
+                        padding: EdgeInsets.only(right: index < 1 ? 12.w : 0),
+                        child: GestureDetector(
+                          onTap: () => controller.selectMood(mood['label'] as String),
+                          child: Container(
+                            width: 85.w,
+                            height: 85.h,
+                            decoration: BoxDecoration(
+                              color: isSelected
+                                  ? (mood['color'] as Color).withValues(alpha: 0.3)
+                                  : Colors.white.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(16.r),
+                              border: Border.all(
+                                color: isSelected
+                                    ? (mood['color'] as Color)
+                                    : Colors.transparent,
+                                width: 2.w,
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  mood['icon'] as String,
+                                  width: 36.w,
+                                  height: 36.h,
+                                ),
+                                SizedBox(height: 8.h),
+                                Text(
+                                  mood['label'] as String,
+                                  style: AppFonts.urbanistSemiBold(
+                                    fontSize: 12.sp,
+                                    color: AppColors.whiteColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ],
               )),
           SizedBox(height: 20.h),
           // Save Button
@@ -343,7 +401,7 @@ class LogMoodPage extends StatelessWidget {
                                             shape: BoxShape.circle,
                                             border: Border.all(
                                               color: AppColors.primaryColor,
-                                              width: 2.w,
+                                              width: 1.w,
                                             ),
                                           ),
                                           child: Padding(
@@ -562,68 +620,72 @@ class LogMoodPage extends StatelessWidget {
   }
 
   Widget _buildVerseRecommendations(LogMoodController controller) {
-    final verses = [
-      {
-        'mood': 'anxious',
-        'badge': 'For Anxious',
-        'verse':
-            '"Do not be anxious about anything, but in every situation, by prayer and petition with thanksgiving, present your requests to God."',
-        'reference': '— Philippians 4:6',
-      },
-      {
-        'mood': 'awful',
-        'badge': 'For Awful',
-        'verse':
-            '"The Lord is close to the brokenhearted and saves those who are crushed in spirit."',
-        'reference': '— Psalm 34:18',
-      },
-      {
-        'mood': 'angry',
-        'badge': 'For Angry',
-        'verse':
-            '"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future."',
-        'reference': '— Jeremiah 29:11',
-      },
-    ];
+    return Builder(
+      builder: (context) {
+        final verses = [
+          {
+            'mood': 'anxious',
+            'badge': 'For Anxious',
+            'verse':
+                '"Do not be anxious about anything, but in every situation, by prayer and petition with thanksgiving, present your requests to God."',
+            'reference': '— Philippians 4:6',
+          },
+          {
+            'mood': 'awful',
+            'badge': 'For Awful',
+            'verse':
+                '"The Lord is close to the brokenhearted and saves those who are crushed in spirit."',
+            'reference': '— Psalm 34:18',
+          },
+          {
+            'mood': 'angry',
+            'badge': 'For Angry',
+            'verse':
+                '"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future."',
+            'reference': '— Jeremiah 29:11',
+          },
+        ];
 
-    return Container(
-      padding: EdgeInsets.all(20.w),
-      decoration: BoxDecoration(
-        color: Color(0xFF2D3E3F).withValues(alpha: 0.9),
-        borderRadius: BorderRadius.circular(20.r),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+        return Container(
+          padding: EdgeInsets.all(20.w),
+          decoration: BoxDecoration(
+            color: Color(0xFF2D3E3F).withValues(alpha: 0.9),
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.menu_book, color: AppColors.primaryColor, size: 20.sp),
-              SizedBox(width: 8.w),
+              Row(
+                children: [
+                  Icon(Icons.menu_book, color: AppColors.primaryColor, size: 20.sp),
+                  SizedBox(width: 8.w),
+                  Text(
+                    'Verse Recommendations',
+                    style: AppFonts.urbanistBold(
+                      fontSize: 16.sp,
+                      color: AppColors.whiteColor,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 8.h),
               Text(
-                'Verse Recommendations',
-                style: AppFonts.urbanistBold(
-                  fontSize: 16.sp,
-                  color: AppColors.whiteColor,
+                'Based on your mood, we suggest these scriptures',
+                style: AppFonts.urbanistRegular(
+                  fontSize: 13.sp,
+                  color: AppColors.white500.withValues(alpha: 0.7),
                 ),
               ),
+              SizedBox(height: 16.h),
+              ...verses.map((verse) => _buildVerseCard(context, controller, verse)),
             ],
           ),
-          SizedBox(height: 8.h),
-          Text(
-            'Based on your mood, we suggest these scriptures',
-            style: AppFonts.urbanistRegular(
-              fontSize: 13.sp,
-              color: AppColors.white500.withValues(alpha: 0.7),
-            ),
-          ),
-          SizedBox(height: 16.h),
-          ...verses.map((verse) => _buildVerseCard(verse)),
-        ],
-      ),
+        );
+      },
     );
   }
 
-  Widget _buildVerseCard(Map<String, String> verse) {
+  Widget _buildVerseCard(BuildContext context, LogMoodController controller, Map<String, String> verse) {
     return Container(
       margin: EdgeInsets.only(bottom: 16.h),
       padding: EdgeInsets.all(16.w),
@@ -677,7 +739,22 @@ class LogMoodPage extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                // Get the current selected mood from controller
+                final currentMood = controller.selectedMood.value.isNotEmpty
+                    ? controller.selectedMood.value
+                    : verse['mood'] ?? 'calm';
+
+                // Navigate to Add Journal page with verse data using GoRouter
+                GoRouter.of(context).pushNamed(
+                  'addJournal',
+                  extra: {
+                    'verse': verse['verse'],
+                    'reference': verse['reference'],
+                    'mood': currentMood,
+                  },
+                );
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryColor,
                 padding: EdgeInsets.symmetric(vertical: 12.h),
@@ -728,33 +805,56 @@ class MoodLineChartPainter extends CustomPainter {
     required this.getMoodIcon,
   });
 
+
   @override
   void paint(Canvas canvas, Size size) {
+    // Main line paint (graph connection)
     final paint = Paint()
-      ..color = Color(0xFFFF6B35)
-      ..strokeWidth = 2.5
+      ..color = const Color(0xFFFF6B35)
+      ..strokeWidth = 1
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round;
 
-    // Calculate positions
     final double spacing = size.width / (data.length - 1);
     final double graphHeight = 90.0;
 
-    // Create path for the line
+    // Guide line (High / Mid / Low)
+    final guidePaint = Paint()
+      ..color = Colors.white24
+      ..strokeWidth = 0.8
+      ..style = PaintingStyle.stroke;
+
+    // Convert mood level → Y position
+    double getY(int level) {
+      return graphHeight - ((level - 1) * (graphHeight / 3)) + 10;
+    }
+
+    // ---------------------------------------------------------
+    // 🔹 Draw High, Mid, Low horizontal reference lines
+    // ---------------------------------------------------------
+    final lowY = getY(1);   // Level 1 (Low)
+    final midY = getY(2);   // Level 2 (Mid)
+    final highY = getY(3);  // Level 3 (High)
+
+    canvas.drawLine(Offset(0, highY), Offset(size.width, highY), guidePaint);
+    canvas.drawLine(Offset(0, midY),  Offset(size.width, midY),  guidePaint);
+    canvas.drawLine(Offset(0, lowY),  Offset(size.width, lowY),  guidePaint);
+
+    // ---------------------------------------------------------
+    // 🔹 Build the line graph path
+    // ---------------------------------------------------------
     final path = Path();
     final List<Offset> points = [];
 
     for (int i = 0; i < data.length; i++) {
       final level = data[i]['level'] as int;
       final x = i * spacing;
-      // Invert Y so high values are at top (level 4 = top, level 1 = bottom)
-      // Add 10 offset to match icon positioning
-      final y = graphHeight - ((level - 1) * (graphHeight / 3)) + 10;
+      final y = getY(level);
       points.add(Offset(x, y));
     }
 
-    // Draw the connecting lines
+    // Draw the connecting line
     if (points.isNotEmpty) {
       path.moveTo(points[0].dx, points[0].dy);
       for (int i = 1; i < points.length; i++) {
@@ -763,6 +863,8 @@ class MoodLineChartPainter extends CustomPainter {
       canvas.drawPath(path, paint);
     }
   }
+
+
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {

@@ -35,7 +35,7 @@ class CustomNavBar extends StatelessWidget {
               label: 'Home',
               index: 0,
               isSelected: controller.selectedIndex.value == 0,
-              onTap: () => controller.changeIndex(0),
+              onTap: () => controller.changeIndex(0, context),
             ),
             _NavBarItem(
               icon: CustomAssets.journal_nav,
@@ -43,7 +43,7 @@ class CustomNavBar extends StatelessWidget {
               label: 'Journal',
               index: 1,
               isSelected: controller.selectedIndex.value == 1,
-              onTap: () => controller.changeIndex(1),
+              onTap: () => controller.changeIndex(1, context),
             ),
             _NavBarItem(
               icon: CustomAssets.chatbot_nav,
@@ -51,7 +51,7 @@ class CustomNavBar extends StatelessWidget {
               label: 'Chatbot',
               index: 2,
               isSelected: controller.selectedIndex.value == 2,
-              onTap: () => controller.changeIndex(2),
+              onTap: () => controller.changeIndex(2, context),
             ),
             _NavBarItem(
               icon: CustomAssets.bible_nav,
@@ -59,7 +59,7 @@ class CustomNavBar extends StatelessWidget {
               label: 'The Bible',
               index: 3,
               isSelected: controller.selectedIndex.value == 3,
-              onTap: () => controller.changeIndex(3),
+              onTap: () => controller.changeIndex(3, context),
             ),
             _NavBarItem(
               icon: CustomAssets.profile_nav,
@@ -67,7 +67,7 @@ class CustomNavBar extends StatelessWidget {
               label: 'Profile',
               index: 4,
               isSelected: controller.selectedIndex.value == 4,
-              onTap: () => controller.changeIndex(4),
+              onTap: () => controller.changeIndex(4, context),
             ),
           ],
         ),

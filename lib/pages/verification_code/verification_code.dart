@@ -61,18 +61,21 @@ class VerificationCodeScreen extends StatelessWidget {
                         color: Colors.white.withValues(alpha: 0.2),
                         shape: BoxShape.circle,
                       ),
-                      child: IconButton(
-                        onPressed: () => context.pop(),
-                        icon: SvgPicture.asset(
-                          CustomAssets.back_arrow_icon,
-                          width: 20.w,
-                          height: 20.h,
-                          colorFilter: ColorFilter.mode(
-                            AppColors.whiteColor,
-                            BlendMode.srcIn,
+                      child:  GestureDetector(
+                        onTap: () => context.pop(),
+                        child: Container(
+                          width: 40.w,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.2),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.arrow_back_ios_new,
+                            color: AppColors.whiteColor,
+                            size: 20.sp,
                           ),
                         ),
-                        padding: EdgeInsets.zero,
                       ),
                     ),
                   ),

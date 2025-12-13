@@ -12,7 +12,9 @@ class CustomAssets {
   static const String tellUsYourselfLastPageBackground = 'assets/images/tell_us_your_self_lastpage.png';
   static const String verse_of_the_day_background = 'assets/images/verse_of_the_day.png';
   static const String home_background_image = 'assets/images/home_background.png';
-  static const String today_s_plan_background='assets/images/Today_s_plan.png';
+  static const String great_work_image = 'assets/images/great_work.png';
+  static const String today_s_plan_background = 'assets/images/Today_s_plan.png';
+
 
   // Celebration icon for page 13
 
@@ -42,6 +44,7 @@ class CustomAssets {
   static const String bible_hover_nav = 'assets/icons/bible_hovar_nav.svg';
   static const String profile_nav = 'assets/icons/profile_nav.svg';
   static const String profile_hover_nav = 'assets/icons/profile_hovar_nav.svg';
+  static const String what_made_you_smile = 'assets/icons/what_made_you_smile_today.svg';
 
 
 
@@ -52,4 +55,76 @@ class CustomAssets {
   static const String anxious_icon = 'assets/icons/anxious.svg';
   static const String calm_icon ='assets/icons/calm.svg';
   static const String how_are_you_feeling ='assets/icons/how_are_you_feeling.svg';
+  static const String write_icon ='assets/icons/write_icon.svg';
+
+  // Journal icons
+  static const String journal_title_icon = 'assets/icons/journal_titile.svg';
+  static const String today_reflection_icon = 'assets/icons/today_reflection.svg';
+  static const String today_s_reflection_icon = 'assets/icons/today_s_reflection.svg';
+  static const String what_made_you_smile_today_icon = 'assets/icons/what_made_you_smile_today.svg';
+  static const String add_image_icon = 'assets/icons/add_image.svg';
+
+
+  //view Journal
+ static const String today_s_prompt ='assets/images/today_s_prompt.png';
+  static const String journal_background_with_image ='assets/images/journal_background_with_image.png';
+  static const String journal_background_without_image ='assets/images/journal_background_without_image.png';
+
+  static const String older_journal_background_without_image ='assets/images/older_journal_background_without_image.png';
+
+  static const String journal_image ='assets/images/journal_image.png';
+  static const String older_journal_image ='assets/images/older_journal_image.png';
+
+
+
+  //profile
+
+  static const String about_use = 'assets/icons/about_us.svg';
+  static const String bible_version = 'assets/icons/bible_version.svg';
+  static const String change_password = 'assets/icons/change_password.svg';
+  static const String language = 'assets/icons/langugage.svg';
+  static const String logout = 'assets/icons/logout.svg';
+  static const String manage_subscription = 'assets/icons/manage_subscription.svg';
+  static const String notification = 'assets/icons/notification.svg';
+  static const String privacy_policy = 'assets/icons/privacy_policy.svg';
+  static const String terms_and_condition = 'assets/icons/terms_and_condition.svg';
+  static const String premimum_icon = 'assets/icons/premimum_icon.svg';
+
+
+  static const String premimum_background = 'assets/icons/premimum_background.png';
+
+
+  //payment
+
+  static const String stripe_image = 'assets/images/Stripe.png';
+  static const String visa_image = 'assets/images/visa.png';
+  static const String pay_pal_image = 'assets/images/paypal.png';
+  static const String amex_image = 'assets/images/amex.png';
+  static const String master_card_image = 'assets/images/mastercard.png';
+  static const String discover = 'assets/images/discover.png';
+
+  static const String card_icon ='assets/icons/card.svg';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

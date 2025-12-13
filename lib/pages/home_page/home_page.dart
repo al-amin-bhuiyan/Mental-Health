@@ -610,18 +610,18 @@ class HomePage extends StatelessWidget {
         children: [
           // Circular checkbox
           Container(
-            width: 48.w,
-            height: 48.h,
+            width: 35.w,
+            height: 35.h,
             decoration: BoxDecoration(
-              color: isDone ? AppColors.primaryColor : Colors.transparent,
+              //color: isDone ? AppColors.primaryColor : Colors.transparent,
               shape: BoxShape.circle,
               border: Border.all(
-                color: AppColors.primaryColor.withValues(alpha: 0.3),
-                width: 1.w,
+                color: AppColors.primaryColor.withValues(alpha: 1.3),
+                width: 3.w,
               ),
             ),
             child: isDone
-                ? Icon(Icons.check, color: Colors.white, size: 24.sp)
+                ? Icon(Icons.check, color:AppColors.primaryColor, size: 26.sp)
                 : null,
           ),
           SizedBox(width: 12.w),

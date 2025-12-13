@@ -1,82 +1,54 @@
 import 'package:get/get.dart';
 
 class ViewFullPlanController extends GetxController {
-  // Observable variables
-  var plans = <Map<String, dynamic>>[].obs;
-  var selectedDate = DateTime.now().obs;
+  // Track completion status of each task
+  RxBool readingCompleted = false.obs;
+  RxBool prayerCompleted = false.obs;
+  RxBool reflectionCompleted = false.obs;
+
+  // Calculate progress percentage
+  RxInt progressPercentage = 0.obs;
+  RxInt completedTasks = 0.obs;
 
   @override
   void onInit() {
     super.onInit();
-    loadPlans();
+    updateProgress();
   }
 
-  void loadPlans() {
-    // Mock data for today's plans
-    plans.value = [
-      {
-        'icon': 'menu_book',
-        'title': 'Morning Devotional',
-        'time': '6:00 AM - 6:30 AM',
-        'duration': '30 minutes',
-        'status': 'Done',
-        'description': 'Start your day with Bible reading and reflection',
-      },
-      {
-        'icon': 'church',
-        'title': 'Prayer Time',
-        'time': '6:30 AM - 6:35 AM',
-        'duration': '5 minutes',
-        'status': 'Done',
-        'description': 'Connect with God through prayer',
-      },
-      {
-        'icon': 'fitness_center',
-        'title': 'Exercise',
-        'time': '7:00 AM - 7:30 AM',
-        'duration': '30 minutes',
-        'status': 'In Progress',
-        'description': 'Physical activity for a healthy body',
-      },
-      {
-        'icon': 'book',
-        'title': 'Bible Study',
-        'time': '12:00 PM - 1:00 PM',
-        'duration': '1 hour',
-        'status': 'Upcoming',
-        'description': 'Deep dive into scripture',
-      },
-      {
-        'icon': 'edit_note',
-        'title': 'Journal Reflection',
-        'time': '9:00 PM - 9:30 PM',
-        'duration': '30 minutes',
-        'status': 'Upcoming',
-        'description': 'Reflect on your day and document your journey',
-      },
-      {
-        'icon': 'bedtime',
-        'title': 'Evening Prayer',
-        'time': '10:00 PM - 10:15 PM',
-        'duration': '15 minutes',
-        'status': 'Upcoming',
-        'description': 'End your day with gratitude and prayer',
-      },
-    ];
+  // Toggle task completion
+  void toggleReading() {
+    readingCompleted.value = !readingCompleted.value;
+    updateProgress();
   }
 
-  void markAsDone(int index) {
-    plans[index]['status'] = 'Done';
-    plans.refresh();
+  void togglePrayer() {
+    prayerCompleted.value = !prayerCompleted.value;
+    updateProgress();
   }
 
-  void markAsInProgress(int index) {
-    plans[index]['status'] = 'In Progress';
-    plans.refresh();
+  void toggleReflection() {
+    reflectionCompleted.value = !reflectionCompleted.value;
+    updateProgress();
   }
 
-  int get completedCount => plans.where((plan) => plan['status'] == 'Done').length;
-  int get totalCount => plans.length;
-  double get progressPercentage => completedCount / totalCount;
+  // Update overall progress
+  void updateProgress() {
+    completedTasks.value = 0;
+    if (readingCompleted.value) completedTasks.value++;
+    if (prayerCompleted.value) completedTasks.value++;
+    if (reflectionCompleted.value) completedTasks.value++;
+
+    // Calculate percentage (each task = 33.33%)
+    progressPercentage.value = (completedTasks.value * 33.33).round();
+
+    // Make sure 3 tasks = 100%
+    if (completedTasks.value == 3) {
+      progressPercentage.value = 100;
+    }
+  }
+
+  // Check if all tasks are completed
+  bool get allTasksCompleted => completedTasks.value == 3;
 }
 
