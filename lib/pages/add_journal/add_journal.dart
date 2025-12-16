@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../core/custom_assets/custom_assets.dart';
 import '../../utils/app_colors/app_colors.dart';
-import '../../utils/app_colors/app_colors.dart';
 import '../../utils/app_fonts/app_fonts.dart';
 import 'add_journal_controller.dart';
 

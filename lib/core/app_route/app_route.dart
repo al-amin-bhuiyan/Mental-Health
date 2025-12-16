@@ -1,6 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+import 'package:mental_health/pages/profile/logout/logout.dart';
+import 'package:mental_health/pages/profile/privacy_policy/privacy_policy.dart';
+import 'package:mental_health/pages/profile/terms_and_conditions/terms_and_condition_controller.dart';
 import '../../pages/add_journal/add_journal.dart';
+import '../../pages/profile/about_us/about_us.dart';
+import '../../pages/profile/language/language.dart';
 import '../../pages/profile/manage_subscription/payment/payment.dart';
 import '../../pages/view_journal/view_journal.dart';
 import '../../pages/login/login.dart';
@@ -76,6 +81,11 @@ class AppRoute {
         builder: (context, state) => const ChangePasswordPage(),
       ),
       GoRoute(
+        path: AppPath.language,
+        name: 'language',
+        builder: (context, state) => const LanguagePage(),
+      ),
+      GoRoute(
         path: AppPath.notification,
         name: 'notification',
         builder: (context, state) => const NotificationPage(),
@@ -91,13 +101,37 @@ class AppRoute {
         builder: (context, state) => const ManageSubscriptionPage(),
       ),
       GoRoute(
+        path: AppPath.termsandcondition,
+        name: 'termsandcondition',
+        builder: (context, state) => const TermsAndConditionPage(),
+      ),
+      GoRoute(
+        path: AppPath.privacypolicy,
+        name: 'privacypolicy',
+        builder: (context, state) => const PrivacyPolicyPage(),
+      ),
+      GoRoute(
+        path: AppPath.logout,
+        name: 'logout',
+        builder: (context, state) => const LogoutPage(),
+      ),
+
+
+      GoRoute(
+        path: AppPath.payment,
+        name: 'payment',
+        builder: (context, state) => const PaymentPage(),
+      ),
+      GoRoute(
+        path: AppPath.aboutus,
+        name: 'AboutUs',
+        builder: (context, state) => const AboutUs(),
+      ),
+      GoRoute(
         path: AppPath.chat,
         name: 'chat',
-        builder: (context, state) => const Scaffold(
-          body: Center(
-            child: Text('Chat Screen'),
-          ),
-        ),
+        builder: (context, state) =>
+            const Scaffold(body: Center(child: Text('Chat Screen'))),
       ),
       GoRoute(
         path: AppPath.otpVerification,
@@ -144,19 +178,9 @@ class AppRoute {
         name: 'voiceCallReminder',
         builder: (context, state) => const VoiceCallReminderPage(),
       ),
-      GoRoute(
-        path: AppPath.payment,
-        name: 'manageSubscription',
-        builder: (context, state) => const PaymentPage(),
-      ),
-      // Add more routes here as needed
       // Add more routes here as needed
     ],
-    errorBuilder: (context, state) => Scaffold(
-      body: Center(
-        child: Text('Error: ${state.error}'),
-      ),
-    ),
+    errorBuilder: (context, state) =>
+        Scaffold(body: Center(child: Text('Error: ${state.error}'))),
   );
 }
-

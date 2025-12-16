@@ -214,7 +214,7 @@ class HomePage extends StatelessWidget {
 
                   child: Container(
                     decoration: BoxDecoration(
-                      //   color: Color(0xFF4A5B5D),
+                         color: AppColors.blackLightColor.withOpacity(.99),
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(25.h),
                     ),
@@ -242,8 +242,8 @@ class HomePage extends StatelessWidget {
                 SizedBox(height: 8.h),
                 // Emoji icon with border for selected
                 Container(
-                  width: 40.w,
-                  height: 40.h,
+                  width: 35.w,
+                  height: 35.h,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: isSelected
@@ -256,7 +256,7 @@ class HomePage extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(10.w),
+                      padding: EdgeInsets.all(5.w),
                       child: SvgPicture.asset(
                         width: 20.w,
                         height: 20.h,

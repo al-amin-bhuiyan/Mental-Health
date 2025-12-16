@@ -17,6 +17,7 @@ class TellUsYourselfScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(TellUsYourselfController());
+    debugPrint('BG asset path: ${CustomAssets.your_one_time_offer_background}');
 
     return Scaffold(
       body: Stack(
@@ -2354,6 +2355,7 @@ class OneTimeOfferPage extends StatelessWidget {
 
   const OneTimeOfferPage({super.key, required this.controller});
 
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -2361,10 +2363,11 @@ class OneTimeOfferPage extends StatelessWidget {
       children: [
         // Background Image
         Image.asset(
-          CustomAssets.tellUsYourselfLastPageBackground,
+          CustomAssets.your_one_time_offer_background,
           fit: BoxFit.cover,
         ),
         // Dark gradient overlay
+
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -2404,7 +2407,7 @@ class OneTimeOfferPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 28.h),
+              //  SizedBox(height: 2.h),
                 // Title
                 Text(
                   'Your one-time offer',
@@ -2414,10 +2417,10 @@ class OneTimeOfferPage extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 24.h),
+                SizedBox(height: 15.h),
                 // White pill with discount
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 60.w, vertical: 35.h),
+                  padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 35.h),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20.r),

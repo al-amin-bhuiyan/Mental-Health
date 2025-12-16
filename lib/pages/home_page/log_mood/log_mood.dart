@@ -15,6 +15,10 @@ class LogMoodPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(LogMoodController());
 
+    //;final x = i * spacing;
+  //  final y = graphHeight - ((level - 1) * (graphHeight / 3)) + 10;
+   // debugPrint(x);
+
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -286,7 +290,7 @@ class LogMoodPage extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.show_chart, color: AppColors.primaryColor, size: 20.sp),
+              Icon(Icons.show_chart, color: AppColors.primaryColor, size: 17.sp),
               SizedBox(width: 8.w),
               Text(
                 'Your Emotional Insights',
@@ -386,7 +390,7 @@ class LogMoodPage extends StatelessWidget {
                                       final level = controller.weeklyMoodData[i]['level'] as int;
                                       final mood = controller.weeklyMoodData[i]['mood'] as String;
                                       final spacing = constraints.maxWidth / (controller.weeklyMoodData.length - 1);
-                                      final graphHeight = 90.0;
+                                      final graphHeight = 95.0;
                                       final x = i * spacing;
                                       final y = graphHeight - ((level - 1) * (graphHeight / 3)) + 10;
 
@@ -394,8 +398,8 @@ class LogMoodPage extends StatelessWidget {
                                         left: x - 16.w,
                                         top: y - 16.w,
                                         child: Container(
-                                          width: 32.w,
-                                          height: 32.h,
+                                          width: 25.w,
+                                          height: 25.h,
                                           decoration: BoxDecoration(
                                             color: Color(0xFF3A4A4B),
                                             shape: BoxShape.circle,
@@ -405,7 +409,7 @@ class LogMoodPage extends StatelessWidget {
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(7.w),
+                                            padding: EdgeInsets.all(3.w),
                                             child: SvgPicture.asset(
                                               _getMoodIcon(mood),
                                               fit: BoxFit.contain,
@@ -817,27 +821,27 @@ class MoodLineChartPainter extends CustomPainter {
       ..strokeJoin = StrokeJoin.round;
 
     final double spacing = size.width / (data.length - 1);
-    final double graphHeight = 90.0;
+    final double graphHeight = 95.0;
 
     // Guide line (High / Mid / Low)
     final guidePaint = Paint()
       ..color = Colors.white24
-      ..strokeWidth = 0.8
+      ..strokeWidth = 1.8
       ..style = PaintingStyle.stroke;
 
     // Convert mood level → Y position
     double getY(int level) {
-      return graphHeight - ((level - 1) * (graphHeight / 3)) + 10;
+      return graphHeight - ((level - 1) * (graphHeight / 3)) +10;
     }
 
     // ---------------------------------------------------------
     // 🔹 Draw High, Mid, Low horizontal reference lines
     // ---------------------------------------------------------
     final lowY = getY(1);   // Level 1 (Low)
-    final midY = getY(2);   // Level 2 (Mid)
-    final highY = getY(3);  // Level 3 (High)
+    final midY = getY(2)-10;   // Level 2 (Mid)
+    final highY = getY(3)-20;  // Level 3 (High)
 
-    canvas.drawLine(Offset(0, highY), Offset(size.width, highY), guidePaint);
+    canvas.drawLine(Offset(3, highY), Offset(size.width, highY), guidePaint);
     canvas.drawLine(Offset(0, midY),  Offset(size.width, midY),  guidePaint);
     canvas.drawLine(Offset(0, lowY),  Offset(size.width, lowY),  guidePaint);
 

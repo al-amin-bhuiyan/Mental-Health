@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../utils/app_colors/app_colors.dart';
 
 class ManageSubscriptionController extends GetxController {
   // Observable for selected plan
@@ -41,27 +40,8 @@ class ManageSubscriptionController extends GetxController {
 
   // Purchase plan
   void purchasePlan(String planType, BuildContext context) {
-    // TODO: Implement payment gateway integration
-    Get.snackbar(
-      'Purchase Plan',
-      'Redirecting to payment gateway for $planType plan...',
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: AppColors.primaryColor,
-      colorText: AppColors.whiteColor,
-      duration: const Duration(seconds: 2),
-    );
-
-    // Simulate purchase process
-    Future.delayed(const Duration(milliseconds: 1500), () {
-      selectedPlan.value = planType;
-      Get.snackbar(
-        'Success',
-        'Successfully subscribed to $planType plan!',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: AppColors.primaryColor,
-        colorText: AppColors.whiteColor,
-      );
-    });
+    // Navigate to payment page
+    context.push('/payment');
   }
 
   // Check if plan is selected

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -110,8 +112,8 @@ class ProfilePage extends StatelessWidget {
 
                       _buildSettingsItem(
                         icon: CustomAssets.language,
-                        title: 'Language',
-                        onTap: () => controller.navigateToLanguage(context),
+                        title: 'language',
+                        onTap: () => context.push(AppPath.language),
                       ),
 
                       SizedBox(height: 12.h),
@@ -119,7 +121,7 @@ class ProfilePage extends StatelessWidget {
                       _buildSettingsItem(
                         icon: CustomAssets.about_use,
                         title: 'About Us',
-                        onTap: () => controller.navigateToAboutUs(context),
+                        onTap: () => context.push(AppPath.aboutus),
                       ),
 
                       SizedBox(height: 12.h),
@@ -127,7 +129,7 @@ class ProfilePage extends StatelessWidget {
                       _buildSettingsItem(
                         icon: CustomAssets.privacy_policy,
                         title: 'Privacy policy',
-                        onTap: () => controller.navigateToPrivacyPolicy(context),
+                        onTap: () => context.push(AppPath.privacypolicy),
                       ),
 
                       SizedBox(height: 12.h),
@@ -135,7 +137,7 @@ class ProfilePage extends StatelessWidget {
                       _buildSettingsItem(
                         icon: CustomAssets.terms_and_condition,
                         title: 'Terms & Conditions',
-                        onTap: () => controller.navigateToTermsAndConditions(context),
+                        onTap: () => context.push(AppPath.termsandcondition),
                       ),
 
                       SizedBox(height: 12.h),
@@ -143,7 +145,7 @@ class ProfilePage extends StatelessWidget {
                       _buildSettingsItem(
                         icon: CustomAssets.logout,
                         title: 'Logout',
-                        onTap: () => controller.logout(context),
+                        onTap: () => _showLogoutDialog(context),
                       ),
 
                       SizedBox(height: 100.h), // Extra space for nav bar
@@ -159,9 +161,115 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+  // Replaced Get.defaultDialog with Flutter's showDialog to avoid navigation/library overlap issues.
+  // Uses Navigator.of(context).pop() to close the dialog reliably.
+  void _showLogoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: Colors
+          .transparent, // << add this so the BackdropFilter can blur the background
+
+      builder: (dialogContext) {
+        return BackdropFilter( // << wrap AlertDialog with BackdropFilter
+          filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
+          child: Container(
+            // optional dim so it still looks like a modal overlay
+            color: Colors.black.withValues(alpha: 0.35),
+            child: AlertDialog(
+              backgroundColor: Colors.black.withValues(alpha: 0.9),
+              shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+              content: Text(
+                'Do you want to logout from your profile?',
+                style: AppFonts.urbanistMedium(
+                  fontSize: 14.sp,
+                  color: AppColors.grayColor,
+                ),
+              ),
+              actionsPadding:
+              EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(dialogContext).pop();
+                  },
+                  style: TextButton.styleFrom(
+                    padding:
+                    EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                    backgroundColor:
+                    AppColors.blackLightColor.withValues(alpha: 0.4),
+                    side:
+                    BorderSide(color: AppColors.primaryColor, width: 2.w),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r)),
+                  ),
+                  child: Text(
+                    'No',
+                    style: AppFonts.urbanistSemiBold(
+                      fontSize: 16.sp,
+                      color: AppColors.whiteColor,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8.w),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(dialogContext).pop();
+                    _logout(context);
+                  },
+                  style: TextButton.styleFrom(
+                    padding:
+                    EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                    backgroundColor: AppColors.primaryColor,
+                    side:
+                    BorderSide(color: AppColors.primaryColor, width: 1.w),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r)),
+                  ),
+                  child: Text(
+                    'Yes',
+                    style: AppFonts.urbanistSemiBold(
+                      fontSize: 16.sp,
+                      color: AppColors.whiteColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  // Keep logout logic centralized here. Do actual clearing/navigating from here.
+  // The function accepts BuildContext so you can use either Navigator/GoRouter if needed.
+  void _logout(BuildContext context) {
+    // Example logout steps:
+    // 1. Clear any user/session data (e.g., via controller or storage)
+    //    final controller = Get.find<ProfilePageController>();
+    //    controller.clearSession(); // implement in controller if needed
+    //
+    // 2. Navigate to the login/onboarding screen. Uncomment and change to the correct route.
+    //    // Using GoRouter:
+    //    // context.go(AppPath.login);
+    //    // Using Get:
+    //    // Get.offAllNamed(AppPath.login);
+    //
+    // 3. Show confirmation to the user.
+    Get.snackbar(
+      'Logged out',
+      'You have been logged out',
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.black.withValues(alpha: 0.8),
+      colorText: AppColors.whiteColor,
+    );
+  }
+
   Widget _buildProfileCard(ProfilePageController controller, BuildContext context) {
     return Obx(
-      () => GestureDetector(
+          () => GestureDetector(
         onTap: () {
           // Navigate to edit profile page with userName
           context.push(
@@ -194,17 +302,17 @@ class ProfilePage extends StatelessWidget {
                 child: ClipOval(
                   child: controller.userProfileImage.value.isEmpty
                       ? Container(
-                          color: AppColors.primaryColor.withValues(alpha: 0.3),
-                          child: Icon(
-                            Icons.person,
-                            color: AppColors.whiteColor,
-                            size: 30.sp,
-                          ),
-                        )
+                    color: AppColors.primaryColor.withValues(alpha: 0.3),
+                    child: Icon(
+                      Icons.person,
+                      color: AppColors.whiteColor,
+                      size: 30.sp,
+                    ),
+                  )
                       : Image.network(
-                          controller.userProfileImage.value,
-                          fit: BoxFit.cover,
-                        ),
+                    controller.userProfileImage.value,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
 
@@ -261,25 +369,33 @@ class ProfilePage extends StatelessWidget {
 
             // Text Content
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Upgrade Plan Now!',
-                    style: AppFonts.urbanistBold(
-                      fontSize: 16.sp,
-                      color: AppColors.whiteColor,
+              child: ElevatedButton(
+                onPressed: () => context.push(AppPath.manageSubscription),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  padding: EdgeInsets.zero,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Upgrade Plan Now!',
+                      style: AppFonts.urbanistBold(
+                        fontSize: 16.sp,
+                        color: AppColors.whiteColor,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    'Enjoy all the benefits and explore more',
-                    style: AppFonts.urbanistMedium(
-                      fontSize: 12.sp,
-                      color: AppColors.grayColor,
+                    SizedBox(height: 4.h),
+                    Text(
+                      'Enjoy all the benefits and explore more',
+                      style: AppFonts.urbanistMedium(
+                        fontSize: 12.sp,
+                        color: AppColors.grayColor,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],
@@ -340,4 +456,3 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
-

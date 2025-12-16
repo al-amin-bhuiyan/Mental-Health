@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 
 class DependencyInjection {
   /// Initialize all GetX controllers and dependencies

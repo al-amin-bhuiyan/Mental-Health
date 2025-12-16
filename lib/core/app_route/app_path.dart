@@ -18,9 +18,13 @@ class AppPath {
   static const String notification = '/notification';
   static const String bibleVersion = '/bible-version';
   static const String manageSubscription = '/manage-subscription';
+  static const String payment = '/payment';
   static const String settings = '/settings';
-
-  static const String payment='/payment';
+  static const String aboutus = '/aboutus';
+  static const String privacypolicy='/privacypolicy';
+  static const String termsandcondition ='/termsandcondition';
+  static const String logout ='/logout';
+  
 
   // Mental Health specific routes
   static const String chat = '/chat';
@@ -32,6 +36,8 @@ class AppPath {
   static const String exercises = '/exercises';
   static const String addJournal = '/addJournal';
   static const String voiceCallReminder = '/voiceCallReminder';
+
+  static const String language ='/language';
 
   // Detail routes
   static const String chatDetail = '/chat/:id';

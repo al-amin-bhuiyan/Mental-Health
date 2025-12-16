@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../utils/app_colors/app_colors.dart';
 
 class VoiceCallReminderController extends GetxController {
   // Selected section: 'time', 'timezone', or 'repeat'

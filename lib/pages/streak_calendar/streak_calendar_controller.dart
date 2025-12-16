@@ -14,7 +14,6 @@ class StreakCalendarController extends GetxController {
 
   void loadStreakData() {
     // Mock streak data - replace with actual data from API
-    final now = DateTime.now();
     streakDays.value = [
       DateTime(2025, 12, 2),
       DateTime(2025, 12, 5),

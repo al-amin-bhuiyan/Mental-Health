@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mental_health/core/app_route/app_path.dart';
 import '../../../core/custom_assets/custom_assets.dart';
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_fonts/app_fonts.dart';
@@ -101,7 +102,7 @@ class ManageSubscriptionPage extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 20.h),
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: Colors.black.withValues(alpha: 0.5),
+        color: Colors.black.withValues(alpha: 0.45),
         borderRadius: BorderRadius.circular(16.r),
         border: Border.all(
           color: Colors.white.withValues(alpha: 0.2),
@@ -160,7 +161,8 @@ class ManageSubscriptionPage extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () => controller.purchasePlan(plan.planType, context),
+              onPressed: () => context.push(AppPath.payment),
+
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryColor,
                 padding: EdgeInsets.symmetric(vertical: 14.h),

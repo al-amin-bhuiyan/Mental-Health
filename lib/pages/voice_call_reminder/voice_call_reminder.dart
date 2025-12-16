@@ -356,7 +356,6 @@ class VoiceCallReminderPage extends StatelessWidget {
         childDelegate: ListWheelChildBuilderDelegate(
           childCount: items.length,
           builder: (context, index) {
-            final isSelected = selectedDays[index];
             return GestureDetector(
               onTap: () => onChanged(index),
               child: Obx(() => Center(
